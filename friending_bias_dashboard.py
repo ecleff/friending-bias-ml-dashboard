@@ -101,7 +101,7 @@ input_dropdown_cps = alt.binding_select(options=['pct_homeowners', 'pct_less_tha
 'med_family_income'], name='CPS Factors')
 selection_cps = alt.selection_single(fields=['Variable'], bind=input_dropdown_cps)
 
-cps_scatter_chart = alt.Chart(cps_scatter, title="Chicago Public Schools (CPS) SES Diversity Criteria").mark_point(color="white").encode(
+cps_scatter_chart = alt.Chart(cps_scatter, title="Chicago Public Schools (CPS) SES Diversity Criteria").mark_point().encode(
     x='Value:Q',
     y='bias_own_ses_hs:Q',
     tooltip='Variable:N'
@@ -121,7 +121,7 @@ social_cap_scatter = densplot[densplot['Variable'].isin(social_cap)]
 input_dropdown_sc = alt.binding_select(options=['clustering_hs', 'volunteering_rate_hs'], name='Social Capital Factors')
 selection_sc = alt.selection_single(fields=['Variable'], bind=input_dropdown_sc)
 
-sc_scatter_chart = alt.Chart(social_cap_scatter, title="Social Capital Variables").mark_point(color="white").encode(
+sc_scatter_chart = alt.Chart(social_cap_scatter, title="Social Capital Variables").mark_point().encode(
     x='Value:Q',
     y='bias_own_ses_hs:Q',
     tooltip='Variable:N'
@@ -146,7 +146,7 @@ input_dropdown_od = alt.binding_select(options=['rent_pctage_household_income',
 'pct_snap_with_cash_public_assist', 'pct_poverty_inc_ratio_185_under'], name='Census Block Demographic Factors')
 selection_od = alt.selection_single(fields=['Variable'], bind=input_dropdown_od)
 
-od_scatter_chart = alt.Chart(otherdems_scatter, title="Census Block Demographic Variables").mark_point(color="white").encode(
+od_scatter_chart = alt.Chart(otherdems_scatter, title="Census Block Demographic Variables").mark_point().encode(
     x='Value:Q',
     y='bias_own_ses_hs:Q',
     tooltip='Variable:N'
@@ -169,7 +169,7 @@ input_dropdown_gs = alt.binding_select(options=['ap_courses','honors_classes','g
 'gs_overall_rating','gs_test_rating'], name='Great Schools Factors')
 selection_gs = alt.selection_single(fields=['Variable'], bind=input_dropdown_gs)
 
-gs_scatter_chart = alt.Chart(gs_scatter, title="Great Schools Variables").mark_point(color="white").encode(
+gs_scatter_chart = alt.Chart(gs_scatter, title="Great Schools Variables").mark_point().encode(
     x='Value:Q',
     y='bias_own_ses_hs:Q',
     tooltip='Variable:N',
@@ -203,14 +203,14 @@ st.markdown('To identify the best model to pursue, we tested 8 different machine
 
 reg_test_results = pd.read_csv("data/reg_model_test_results.csv")
 
-test_results_bar = alt.Chart(reg_test_results, title="Models").mark_bar(color="grey").encode(
+test_results_bar = alt.Chart(reg_test_results, title="Models").mark_bar().encode(
     # x='type:N',
     x=alt.X("type:N", sort=alt.EncodingSortField(field="avg_cv_score:q")),
      y='avg_cv_score:Q'
 )
 # idk why not sorting
 
-error_bars = test_results_bar.mark_rule(color='white').encode(
+error_bars = test_results_bar.mark_rule().encode(
     x='type:N',
     y='lower_CI:Q',
     y2= 'upper_CI:Q'
@@ -305,8 +305,6 @@ rf_bar_chart = alt.Chart(fi_results_df, title="Feature Importance").mark_bar().e
     # y=alt.Y('feat_imp:Q', sort='y'),
     x='feat_imp:Q',
     y=alt.Y('var:N', sort='-x')
-).configure_mark(
-    color='white'
 )
 
 # st.metric(label="R-squared", value=score)
