@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#data
+/friending_bias_viz_data.csv
+/std_knn_rf_df.csv
