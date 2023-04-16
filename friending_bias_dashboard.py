@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import altair as alt
+import sklearn
 from sklearn.inspection import permutation_importance
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
@@ -14,8 +15,8 @@ import streamlit_theme as stt
 # from streamlit import configuration
 # configuration.set_config_file(config_file='config.toml')
 # 
-sc = pd.read_csv("friending_bias/data/friending_bias_viz_data.csv", dtype={'ncessch': str,'high_school': str})
-df_rf_sub = pd.read_csv("friending_bias/data/std_knn_rf_df.csv")
+sc = pd.read_csv("/data/friending_bias_viz_data.csv", dtype={'ncessch': str,'high_school': str})
+df_rf_sub = pd.read_csv("/data/std_knn_rf_df.csv")
 
 # setting color theme
 pc_theme = {
