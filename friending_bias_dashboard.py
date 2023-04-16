@@ -203,7 +203,7 @@ st.markdown('To identify the best model to pursue, we tested 8 different machine
 
 reg_test_results = pd.read_csv("data/reg_model_test_results.csv")
 
-test_results_bar = alt.Chart(reg_test_results, title="Models").mark_bar().encode(
+test_results_bar = alt.Chart(reg_test_results, title="Models").mark_bar(color='#853998').encode(
     # x='type:N',
     x=alt.X("type:N", sort=alt.EncodingSortField(field="avg_cv_score:q")),
      y='avg_cv_score:Q'
@@ -305,6 +305,8 @@ rf_bar_chart = alt.Chart(fi_results_df, title="Feature Importance").mark_bar().e
     # y=alt.Y('feat_imp:Q', sort='y'),
     x='feat_imp:Q',
     y=alt.Y('var:N', sort='-x')
+).configure_mark(
+    color='#853998'
 )
 
 # st.metric(label="R-squared", value=score)
