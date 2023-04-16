@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import altair as alt
-import sklearn
+# import sklearn
 from sklearn.inspection import permutation_importance
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
