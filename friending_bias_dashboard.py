@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import altair as alt
-# import sklearn
+import sklearn
 from sklearn.inspection import permutation_importance
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
@@ -15,8 +15,8 @@ import streamlit_theme as stt
 # from streamlit import configuration
 # configuration.set_config_file(config_file='config.toml')
 # 
-sc = pd.read_csv("/data/friending_bias_viz_data.csv", dtype={'ncessch': str,'high_school': str})
-df_rf_sub = pd.read_csv("/data/std_knn_rf_df.csv")
+sc = pd.read_csv("data/friending_bias_viz_data.csv", dtype={'ncessch': str,'high_school': str})
+df_rf_sub = pd.read_csv("data/std_knn_rf_df.csv")
 
 # setting color theme
 pc_theme = {
@@ -201,7 +201,7 @@ with col2:
 st.header('Testing models')
 st.markdown('To identify the best model to pursue, we tested 8 different machine learning regression types from the sklearn library. SVM and random forest yielded the highest R-squared values across a 5-fold cross validation. Even still, the predictive power of the top models hovered around <0.39, which is not substantive enough of an R-squared value to make the case for predicting friending bias. Therefore, when optimizing for friending bias in future rezoning projects, friending bias will be taken as given.')
 
-reg_test_results = pd.read_csv("friending_bias/data/reg_model_test_results.csv")
+reg_test_results = pd.read_csv("data/reg_model_test_results.csv")
 
 test_results_bar = alt.Chart(reg_test_results, title="Models").mark_bar(color="grey").encode(
     # x='type:N',
